@@ -1,4 +1,6 @@
 import { FiPlus, FiMoon, FiSun, FiSearch } from "react-icons/fi";
+import { FaNotesMedical } from "react-icons/fa6";
+
 
 function Navbar({
   onCreateClick,
@@ -13,7 +15,7 @@ function Navbar({
         {/* Logo */}
         <div className="flex items-center gap-2">
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-600 text-white font-bold">
-            Q
+            <FaNotesMedical />
           </div>
           <h1 className="text-xl font-bold text-slate-800 dark:text-white">
             QuickNotes
