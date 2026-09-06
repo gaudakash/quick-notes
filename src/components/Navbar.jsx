@@ -1,3 +1,5 @@
+import { FiPlus, FiMoon, FiSun, FiSearch } from "react-icons/fi";
+
 function Navbar({
   onCreateClick,
   searchQuery,
@@ -19,7 +21,8 @@ function Navbar({
         </div>
 
         {/* Desktop Search */}
-        <div className="hidden flex-1 md:block max-w-md">
+        <div className="relative hidden flex-1 md:block max-w-md">
+          <FiSearch className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
           <label htmlFor="search-notes" className="sr-only">
             Search notes
           </label>
@@ -30,7 +33,7 @@ function Navbar({
             placeholder="Search notes..."
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 text-sm outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 dark:border-slate-600 dark:bg-slate-800 dark:text-white dark:focus:ring-indigo-500/40"
+            className="w-full rounded-xl border border-slate-200 bg-slate-50 py-2 pl-10 pr-4 text-sm outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 dark:border-slate-600 dark:bg-slate-800 dark:text-white dark:focus:ring-indigo-500/40"
           />
         </div>
 
@@ -39,36 +42,41 @@ function Navbar({
           <button
             type="button"
             onClick={onToggleDark}
-            className="rounded-xl border border-slate-200 px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-800"
+            className="rounded-xl border border-slate-200 p-2.5 text-slate-600 hover:bg-slate-50 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-800"
             title="Toggle dark mode"
+            aria-label="Toggle dark mode"
           >
-            {darkMode ? "☀️" : "🌙"}
+            {darkMode ? <FiSun className="h-4 w-4" /> : <FiMoon className="h-4 w-4" />}
           </button>
 
           <button
             type="button"
             onClick={onCreateClick}
-            className="rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700"
+            className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700"
           >
-            + New Note
+            <FiPlus className="h-4 w-4" />
+            <span className="hidden sm:inline">New Note</span>
           </button>
         </div>
       </div>
 
       {/* Mobile Search */}
       <div className="border-t border-slate-100 px-4 py-2 md:hidden dark:border-slate-800">
-        <label htmlFor="search-notes-mobile" className="sr-only">
-          Search notes
-        </label>
-        <input
-          id="search-notes-mobile"
-          name="search-mobile"
-          type="text"
-          placeholder="Search notes..."
-          value={searchQuery}
-          onChange={(e) => onSearchChange(e.target.value)}
-          className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 text-sm outline-none focus:border-indigo-500 dark:border-slate-600 dark:bg-slate-800 dark:text-white"
-        />
+        <div className="relative">
+          <FiSearch className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+          <label htmlFor="search-notes-mobile" className="sr-only">
+            Search notes
+          </label>
+          <input
+            id="search-notes-mobile"
+            name="search-mobile"
+            type="text"
+            placeholder="Search notes..."
+            value={searchQuery}
+            onChange={(e) => onSearchChange(e.target.value)}
+            className="w-full rounded-xl border border-slate-200 bg-slate-50 py-2 pl-10 pr-4 text-sm outline-none focus:border-indigo-500 dark:border-slate-600 dark:bg-slate-800 dark:text-white"
+          />
+        </div>
       </div>
     </header>
   );
